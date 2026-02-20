@@ -1,0 +1,5 @@
+node_modules/
+edc-network/
+package-lock.json
+.Rhistory
+.DS_Store
