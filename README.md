@@ -6,6 +6,8 @@ This gateway achieves federated, multi-centric clinical research data visualizat
 
 ## Architecture & Data Space Alignment
 
+![Architecture Diagram](assets/architecture_diagram.png)
+
 This reverse proxy acts as an intelligent intermediary between the standalone Atlas frontend and the central WebAPI backend. It effectively marries the semantic interoperability of the OMOP Common Data Model with the technical trust framework of an EDC network:
 
 1. **Source Interception (Federated Catalog):** Intercepts initialization calls to seamlessly inject virtual "Federated Nodes" into the Atlas "Data Sources" list. In a real Data Space, these nodes represent discovered Data Assets from a Federated Catalog.
@@ -27,16 +29,28 @@ This reverse proxy acts as an intelligent intermediary between the standalone At
    npm install
    ```
 
-2. Establish your master WebAPI URL (defaults to `http://localhost:8080`) and run the proxy:
+2. (Optional) Copy `.env.example` to `.env` and set your specific port and WebAPI URL if different from the defaults:
 
    ```bash
-   LOCAL_WEBAPI_URL=http://localhost:8080 node server.js
+   cp .env.example .env
    ```
 
-3. In OHDSI Atlas, change your internal WebAPI endpoint setting to point to `http://localhost:3000/WebAPI/`.
+3. Run the proxy (it defaults to `http://localhost:8080` for the WebAPI if no `.env` is declared):
+
+   ```bash
+   node server.js
+   ```
+
+4. In OHDSI Atlas, change your internal WebAPI endpoint setting to point to `http://localhost:3000/WebAPI/`.
 
 ## Legal & Architectural Limitations (Secondary Use)
 
 - **Federated Dashboards vs Advanced Studies:** This gateway excels at read-only, aggregated data pulls (Secondary Use of Health Data), vocabulary searching, and demographic dashboards.
 - **Privacy-Enhancing Technologies (PETs):** While retrieving aggregated counts and JSON definitions across EDC respects data minimization principles, executing deep computational packages (like Patient-Level Prediction or Population-Level Estimation) through a synchronous REST-to-EDC tunnel is technically constrained by Atlas's monolithic design and poses GDPR risks if raw dataset linkage were to be attempted.
 - **Hub & Spoke Orchestration:** For complex analytical studies, this repository demonstrates why an asynchronous Study Hub Orchestrator (bringing the computation to the data via R/SQL packages) is the required next architectural step. Forcing computational ML pipelines strictly through a live, synchronous API gateway breaks Statistical Disclosure Control (SDC) guidelines; instead, packages must be routed securely through EDC to localized computing environments within the trusted zones of each hospital.
+
+## Author & License
+
+This project was developed by **Antonio Martin Garre** as an architectural proof and is released as Open Source.
+
+Licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
