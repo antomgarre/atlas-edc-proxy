@@ -1,7 +1,7 @@
 const express = require("express");
 const { createProxyMiddleware, fixRequestBody } = require("http-proxy-middleware");
 const cors = require("cors");
-const { requestFederatedData } = require("./edcClient");
+const { requestFederatedData, getConfig } = require("./edcClient");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -275,16 +275,22 @@ app.use(
 
 // Start Server
 app.listen(PORT, () => {
+  const edcConfig = getConfig();
   console.log("===================================================");
   console.log(`🚀 Atlas-EDC Federation Proxy Initialized!`);
   console.log(`📡 Listening on Port: ${PORT}`);
   console.log(`🏢 Local WebAPI Target: ${LOCAL_WEBAPI_URL}`);
-  console.log(`🌐 Injected Federated Nodes (EDC Mocks):`);
+  console.log(`🌐 Injected Federated Nodes:`);
   FEDERATED_NODES.forEach((n) =>
     console.log(`   - [${n.sourceKey}] ${n.sourceName}`),
   );
+  console.log(`🔗 EDC Consumer Management: ${edcConfig.consumerManagementUrl}`);
+  console.log(`🔗 EDC Provider Protocol:   ${edcConfig.providerProtocolUrl}`);
+  console.log(`🔗 EDC Provider ID:         ${edcConfig.providerId}`);
+  console.log(`🔗 EDC Asset ID:            ${edcConfig.assetId}`);
+  console.log(`🔗 Public Endpoint Override: ${edcConfig.publicEndpointOverride}`);
   console.log("===================================================");
   console.log(
-    "🔗 To test, configure the Services layer URL in Atlas to: http://localhost:3000/WebAPI/",
+    "🔗 Configure Atlas Services URL to: http://localhost:3000/WebAPI/",
   );
 });
