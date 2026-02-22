@@ -16,9 +16,9 @@ const LOCAL_WEBAPI_URL =
 const FEDERATED_NODES = [
   {
     sourceId: 1001,
-    sourceName: "Hospital Alpha (Federated)",
+    sourceName: "Hospital La Paz (Federated)",
     sourceDialect: "postgresql",
-    sourceKey: "hAlpha",
+    sourceKey: "hPaz",
     daimons: [
       { daimonType: "CDM", tableQualifier: "cdm", priority: 1 },
       { daimonType: "Vocabulary", tableQualifier: "vocab", priority: 1 },
@@ -27,9 +27,9 @@ const FEDERATED_NODES = [
   },
   {
     sourceId: 1002,
-    sourceName: "Hospital Beta (Federated)",
+    sourceName: "Hospital Clínico (Federated)",
     sourceDialect: "postgresql",
-    sourceKey: "hBeta",
+    sourceKey: "hClinico",
     daimons: [
       { daimonType: "CDM", tableQualifier: "cdm", priority: 1 },
       { daimonType: "Vocabulary", tableQualifier: "vocab", priority: 1 },
