@@ -8,6 +8,10 @@ This gateway achieves federated, multi-centric clinical research data visualizat
 
 ![Architecture Diagram](assets/architecture_diagram.png)
 
+### Atlas Data Sources with Federated Nodes
+
+![Atlas showing federated hospital nodes injected by the proxy](assets/atlas_datasources_screenshot.png)
+
 This reverse proxy acts as an intelligent intermediary between the standalone Atlas frontend and the central WebAPI backend. It effectively marries the semantic interoperability of the OMOP Common Data Model with the technical trust framework of an EDC network:
 
 1. **Source Interception (Federated Catalog):** Intercepts initialization calls to seamlessly inject virtual "Federated Nodes" into the Atlas "Data Sources" list. In a real Data Space, these nodes represent discovered Data Assets from a Federated Catalog.
