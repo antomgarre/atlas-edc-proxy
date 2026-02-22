@@ -1,5 +1,8 @@
 node_modules/
-edc-network/
+edc-network/mvd/
+edc-network/Samples/
 package-lock.json
+*.log
+.env
 .Rhistory
 .DS_Store

@@ -1,15 +1,27 @@
 {
   "name": "atlas-edc-proxy",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "A transparent gateway proxy that bridges OHDSI Atlas with Eclipse Dataspace Components (EDC) for federated health data spaces.",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "ohdsi",
+    "atlas",
+    "edc",
+    "dataspace",
+    "ehds",
+    "gaia-x",
+    "federated",
+    "health-data",
+    "omop",
+    "proxy"
+  ],
+  "author": "Antonio Martin Garre",
+  "license": "MIT",
   "type": "commonjs",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",

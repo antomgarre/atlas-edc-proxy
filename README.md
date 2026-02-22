@@ -23,6 +23,8 @@ This reverse proxy acts as an intelligent intermediary between the standalone At
 
 ## Setup & Running
 
+### Option A: Node.js (Development)
+
 1. Install dependencies:
 
    ```bash
@@ -38,10 +40,35 @@ This reverse proxy acts as an intelligent intermediary between the standalone At
 3. Run the proxy (it defaults to `http://localhost:8080` for the WebAPI if no `.env` is declared):
 
    ```bash
-   node server.js
+   npm start
    ```
 
 4. In OHDSI Atlas, change your internal WebAPI endpoint setting to point to `http://localhost:3000/WebAPI/`.
+
+### Option B: Docker
+
+```bash
+docker build -t atlas-edc-proxy .
+docker run -p 3000:3000 \
+  -e LOCAL_WEBAPI_URL=http://host.docker.internal:8080 \
+  atlas-edc-proxy
+```
+
+## EDC Network Setup
+
+To test the full federated data flow, you need running Eclipse EDC Connectors. This repository includes the basic EDC configuration files in `edc-network/`:
+
+- `create-ohdsi-asset.json` — Registers your OHDSI WebAPI as an EDC Data Asset
+- `create-ohdsi-policy.json` — Defines the Usage Policy (open access for demo)
+- `create-ohdsi-contract.json` — Creates the Contract Definition linking asset to policy
+- `register-ohdsi.sh` — Script that seeds all three into a running Provider connector
+
+To deploy a full EDC test network, use the [Eclipse EDC Minimum Viable Dataspace (MVD)](https://github.com/eclipse-edc/MinimumViableDataspace). Once your connectors are running, seed the OHDSI asset:
+
+```bash
+cd edc-network
+./register-ohdsi.sh
+```
 
 ## Legal & Architectural Limitations (Secondary Use)
 
@@ -54,3 +81,7 @@ This reverse proxy acts as an intelligent intermediary between the standalone At
 This project was developed by **Antonio Martin Garre** as an architectural proof and is released as Open Source.
 
 Licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
+
+## Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.

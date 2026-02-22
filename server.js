@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Local WebAPI Configuration (Master)
-// We assume Broadsea is running WebAPI on port 8080 (or your local environment's port)
+// Default assumes standard Broadsea deployment on port 8080
 const LOCAL_WEBAPI_URL =
   process.env.LOCAL_WEBAPI_URL || "http://localhost:8080";
 
@@ -16,9 +16,9 @@ const LOCAL_WEBAPI_URL =
 const FEDERATED_NODES = [
   {
     sourceId: 1001,
-    sourceName: "Hospital La Paz (Federated)",
+    sourceName: "Hospital Alpha (Federated)",
     sourceDialect: "postgresql",
-    sourceKey: "hPaz",
+    sourceKey: "hAlpha",
     daimons: [
       { daimonType: "CDM", tableQualifier: "cdm", priority: 1 },
       { daimonType: "Vocabulary", tableQualifier: "vocab", priority: 1 },
@@ -27,9 +27,9 @@ const FEDERATED_NODES = [
   },
   {
     sourceId: 1002,
-    sourceName: "Hospital Clinico (Federated)",
+    sourceName: "Hospital Beta (Federated)",
     sourceDialect: "postgresql",
-    sourceKey: "hClinico",
+    sourceKey: "hBeta",
     daimons: [
       { daimonType: "CDM", tableQualifier: "cdm", priority: 1 },
       { daimonType: "Vocabulary", tableQualifier: "vocab", priority: 1 },

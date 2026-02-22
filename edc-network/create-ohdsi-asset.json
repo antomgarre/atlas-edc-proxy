@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+  },
+  "@id": "ohdsi-webapi-v2",
+  "properties": {
+    "name": "OHDSI WebAPI endpoint",
+    "contenttype": "application/json"
+  },
+  "dataAddress": {
+    "type": "HttpData",
+    "name": "OHDSI WebAPI Data Asset",
+    "baseUrl": "http://127.0.0.1/WebAPI",
+    "proxyPath": "true",
+    "proxyBody": "true",
+    "proxyMethod": "true",
+    "proxyQueryParams": "true"
+  }
+}

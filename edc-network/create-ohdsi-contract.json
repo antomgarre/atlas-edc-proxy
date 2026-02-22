@@ -1,0 +1,9 @@
+{
+  "@context": {
+    "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+  },
+  "@id": "ohdsi-contract-definition",
+  "accessPolicyId": "ohdsi-open-policy",
+  "contractPolicyId": "ohdsi-open-policy",
+  "assetsSelector": []
+}
